@@ -1,0 +1,5 @@
+<factorypath>
+    <factorypathentry kind="WKSPJAR" id="/hs-erp-web/lib/common/velocity-dep-1.4.jar" enabled="true" runInBatchMode="false"/>
+    <factorypathentry kind="WKSPJAR" id="/hs-erp-web/lib/controls/beehive-controls.jar" enabled="true" runInBatchMode="false"/>
+    <factorypathentry kind="WKSPJAR" id="/hs-erp-web/lib/netui/beehive-netui-compiler.jar" enabled="true" runInBatchMode="false"/>
+</factorypath>
