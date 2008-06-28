@@ -1,0 +1,137 @@
+<?xml version="1.0"?>
+<!--
+
+    Enable Beehive
+
+    This Ant build file contains the targets that enable Beehive in your Dynamic Web Project.
+                   
+    Greg Mally
+    Staff Engineer
+    Worldwide Technical Field Readiness
+    BEA Systems, Inc.
+
+-->
+
+<project name="Enable Beehive" default="00.info" basedir=".">
+
+    <description>
+    	This Ant build file contains the targets that enable Beehive in your Dynamic Web Project.
+    </description>
+
+
+	<!--
+    ========================================
+        Property Section
+    ========================================
+    -->
+	<property name="beehive.home" 	location="C:/apache-beehive-1.0.2"/>
+
+	<property name="project.name"   value="Beehive"/>
+	<property name="project.dir"    location="${basedir}/.."/>
+	<property name="project.src"    location="${project.dir}/src"/>
+	<property name="project.web"    location="${project.dir}/web"/>
+
+
+
+    <!--
+    ========================================
+        Import Section
+    ========================================
+    -->
+    <import file="${beehive.home}/beehive-imports.xml"/>
+    <import file="${beehive.home}/ant/beehive-tools.xml"/>
+
+
+
+	<!--
+    ========================================
+        Public Target Section
+    ========================================
+    -->
+
+    <target name="00.info" description="==> Display general information about this Ant build file.">
+    	<echo>
+            Do the following to enable Beehive in your WTP Dynamic Web Application:
+              1.  Make sure the properties in this build file match your project/environment
+              2.  Open the Navigator View
+              3.  Run the 01.enable.beehive target
+              4.  Run the 02.setup.jdt.apt target (unless you want to manually setup the JDT APT)
+              5.  Refresh your project in the Navigator View
+              6.  Add the build/apt/src folder as a Source to the project Java Build Path
+              7.  Restart Eclipse (the JDT APT will not build until this is done...probably a bug)
+              8.  Clean your project
+              9.  Refresh your project in the Navigator View
+              10. Verify that the _pageflow folder exists in the .deployables/[project]/WEB-INF/classes folder
+              11. Your project should now be ready for Beehive development
+    	</echo>
+    </target>
+
+
+	<target name="01.enable.beehive" description="==> Setup the web project for Beehive.">
+		<setup.beehive.netui project.dir="${project.dir}" project.src.dir="${project.src}" project.web.dir="${project.web}"/>
+    </target>
+
+
+	<target name="02.setup.jdt.apt" description="==> Configure the JDT APT builder for Beehive">
+    	<setup.jdt.apt project.dir="${project.dir}" project.name="${project.name}"/>
+    </target>
+
+
+
+    <!--
+    ========================================
+        Macro Section
+    ========================================
+    -->
+	
+    <macrodef name="setup.beehive.netui">
+        <attribute name="project.dir"/>
+    	<attribute name="project.src.dir" default="@{project.dir}/JavaSource"/>
+    	<attribute name="project.web.dir" default="@{project.dir}/WebContent"/>
+        <sequential>
+            <echo>Setting up Beehive for @{project.dir}</echo>
+
+        	<copy todir="@{project.dir}" overwrite="true">
+                <fileset dir="${beehive.home}/samples/netui-blank">
+                    <include name="**/*"/>
+                	<exclude name="build.properties"/>
+                	<exclude name="build.xml"/>
+                </fileset>
+            </copy>
+
+        	<move todir="@{project.src.dir}">
+        		<fileset dir="@{project.web.dir}">
+        			<filename name="Controller.java"/>
+        		</fileset>
+        	</move>
+
+        	<deploy-netui webappdir="@{project.web.dir}"/>
+        </sequential>
+    </macrodef>
+
+    
+    <macrodef name="setup.jdt.apt">
+        <attribute name="project.name"/>
+        <attribute name="project.dir"/>
+        <sequential>
+        	<!-- Setup the .factorypath for JDT APT project settings -->
+        	<copy   tofile="@{project.dir}/.factorypath"
+        	        file="${basedir}/.factorypath-template"
+        	        overwrite="true"/>
+        	<replace file="@{project.dir}/.factorypath" token="%%BEEHIVE_HOME%%" value="${beehive.home}"/>
+
+        	<!-- Setup the org.eclipse.jdt.apt.core.prefs for JDT APT project settings -->
+        	<copy   tofile="@{project.dir}/.settings/org.eclipse.jdt.apt.core.prefs"
+        	        file="${basedir}/org.eclipse.jdt.apt.core.prefs-template"
+        	        overwrite="true"/>
+        	<replace file="@{project.dir}/.settings/org.eclipse.jdt.apt.core.prefs" token="%%PROJECT_NAME%%" value="@{project.name}"/>
+
+        	<!-- Change the output path in the .classpath to the .deployables -->
+        	<replace file="@{project.dir}/.classpath" token='path="bin"' value='path=".deployables/@{project.name}/WEB-INF/classes"'/>
+
+        	<!-- Add the JDT APT generated source folder -->
+        	<mkdir dir="@{project.dir}/build/apt/src"/>
+        </sequential>
+    </macrodef>
+
+</project>
