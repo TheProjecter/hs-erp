@@ -1,0 +1,25 @@
+.commandlink {
+	color: blue;
+	font-family: "tahoma", "helvetica", "arial", "sans-serif";
+	font-size: 12px;
+	font-weight: normal;
+	line-height: 20px;
+	text-decoration: none;
+}
+
+.formtable {
+	cellspacing: "10px";
+	border: 1px solid;
+}
+
+.title {
+	font-size: 14px;
+	font-weight: bold;
+}
+
+.testExample {
+	background-color: #fbfbfb;
+	padding: 1em;
+	margin-bottom: 1em;
+	border: 1px solid #bfbfbf;
+}

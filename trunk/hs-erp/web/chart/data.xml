@@ -1,0 +1,23 @@
+<chart palette='2' caption='County Comparison' shownames='1'
+	showvalues='0' numberSuffix='Peo' numberPrefix='People' useRoundEdges='1' showBorder='1'
+	borderThickness='5'
+	legendBorderAlpha='0'>
+	<categories>
+		<category label='Iowa' />
+		<category label='Texas' />
+	</categories>
+	<dataset seriesName='2002' color='AFD8F8' showValues='0'>
+		<set value='25601' />
+		<set value='20148' />
+		<set value='17372' />
+		<set value='35407' />
+		<set value='38105' />
+	</dataset>
+	<dataset seriesName='2003' color='F6BD0F' showValues='0'>
+		<set value='57401' />
+		<set value='41941' />
+		<set value='45263' />
+		<set value='117320' />
+		<set value='114845' />
+	</dataset>
+</chart>
