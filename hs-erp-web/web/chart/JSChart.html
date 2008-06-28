@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<meta http-equiv="Content-Type"
+			content="text/html; charset=iso-8859-1" />
+		<title>FusionCharts v3 Documentation</title>
+		<script language="JavaScript" src="FusionCharts.js"></script>
+	</head>
+
+	<body>
+		<table width="98%" border="0" cellspacing="0" cellpadding="3"
+			align="center">
+			<tr>
+				<td valign="top" class="text" align="center">
+					<div id="chartdiv" align="center">
+						FusionCharts.
+					</div>
+					<script type="text/javascript">
+		   var chart = new FusionCharts("../FusionCharts/ScrollColumn2D.swf", "ChartId", "500", "350", "0", "0");
+		   chart.setDataXML("<chart palette='2' caption='County Comparison' shownames='1'	showvalues='0' numberSuffix='Peo' numberPrefix='People' useRoundEdges='1' showBorder='1'	borderThickness='5'	legendBorderAlpha='0'>	<categories>		<category label='Iowa' />		<category label='Texas' />	</categories>	<dataset seriesName='2002' color='AFD8F8' showValues='0'>		<set value='25601' />		<set value='20148' />		<set value='17372' />		<set value='35407' />		<set value='38105' />	</dataset>	<dataset seriesName='2003' color='F6BD0F' showValues='0'>		<set value='57401' />		<set value='41941' />		<set value='45263' />		<set value='117320' />		<set value='114845' />	</dataset></chart>");		   
+		   chart.render("chartdiv");
+		</script>
+				</td>
+			</tr>
+			<tr>
+				<td valign="top" class="text" align="center">
+					&nbsp;
+				</td>
+			</tr>
+		</table>
+	</body>
+</html>

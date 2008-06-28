@@ -1,0 +1,108 @@
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=GBK" />
+		<title>学校信息管理系统</title>
+
+		<style type="text/css">
+@import "js/dojo1.1.1/dojo/resourcesf/dojo.css";
+
+@import "js/dojo1.1.1/dijit/themes/dijit.css";
+
+@import "js/dojo1.1.1/dijit/themes/simple/simple.css";
+
+@import "css/sms.css";
+
+@import "js/dojo1.1.1/dojox/grid/_grid/simpleGrid.css";
+
+html,body {
+	height: 100%;
+	width: 100%;
+	padding: 0px;
+	border: 0;
+	font-size: 12px;
+}
+
+#main {
+	height: 100%;
+	width: 100%;
+	padding: 0;
+	border: 0;
+}
+</style>
+
+		<script type="text/javascript">
+		    var djConfig = {
+			isDebug:true, parseOnLoad:true
+		    };
+		</script>
+		<script type="text/javascript" src="js/dojo1.1.1/dojo/dojo.js"></script>
+
+		<script type="text/javascript"> 
+		dojo.require("dijit.layout.ContentPane");
+		dojo.require("dijit.layout.TabContainer");
+		dojo.require("dijit.layout.BorderContainer");
+		dojo.require("dijit.TitlePane");
+		dojo.require("dojo.parser");	
+	</script>
+		<script type="text/javascript">
+		function loadPage(pageName){
+			document.getElementById("myifrm").src= pageName;
+		}
+	</script>
+	</head>
+	<body class="simple">
+		<div id="main" dojoType="dijit.layout.BorderContainer">
+
+			<div id="header" dojoType="dijit.layout.ContentPane" region="top"
+				style="height: 60px; background-color: #f2f5f9; border: 0px solid #bfbfbfs; padding-top: 0px">
+				<h1 align="center">
+					SMS Header
+				</h1>
+			</div>
+
+			<div dojoType="dijit.layout.ContentPane" duration="200" minSize="20"
+				style="width: 140px;" id="mainMenu" region="left" splitter="true">
+
+				<div dojoType="dijit.TitlePane" title="考试管理">
+					<a href="javaScript:loadPage('pageflow/exam/score.html')"
+						class="commandlink">考试成绩录入</a>
+					<br />
+					<a href="javaScript:loadPage('pageflow/exam/statistic.html')"
+						class="commandlink">成绩查询统计</a>
+					<br />
+					<a href="javaScript:loadPage('pageflow/exam/index.html')"
+						class="commandlink">考试基本信息管理</a>
+				</div>
+				<div dojoType="dijit.TitlePane" title="档案管理">
+					<a href="javaScript:loadPage('pageflow/student/index.html')"
+						class="commandlink">学生基本信息管理</a>
+					<br />
+					<a href="javaScript:loadPage('pageflow/teacher/index.html')"
+						class="commandlink">教师基本信息管理</a>
+				</div>
+				<div dojoType="dijit.TitlePane" title="班级管理">
+					<a href="javaScript:loadPage('pageflow/clazz/index.html')"
+						class="commandlink">基本信息管理</a>
+				</div>
+			</div>
+
+			<div dojoType="dijit.layout.ContentPane" region="center"
+				id="contentContainer">
+
+				<iframe class="mainContent" id="myifrm" frameborder="0"
+					width="800px" height="100%" scrolling="no"
+					src="pageflow/clazz/index.html"
+					style="border: 0px solid #bfbfbf">
+				</iframe>
+
+			</div>
+			<div dojoType="dijit.layout.ContentPane" id="footer"
+				tabPosition="bottom" align="center" region="bottom" splitter="true"
+				style="height: 40px">
+				<br />
+				Copyright &copy; 2008 - 2010 Facile ERP Inc. All Rights Reserved
+				<br />
+			</div>
+		</div>
+	</body>
+</html>
