@@ -1,0 +1,300 @@
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<title>Dijit Theme Tester</title>
+
+		<style type="text/css">
+@import "../../js/dojo1.1.1/dojo/resources/dojo.css";
+
+@import "../../js/dojo1.1.1/dijit/themes/dijit.css";
+
+@import "../../js/dojo1.1.1/dijit/themes/simple/simple.css";
+
+@import "../../css/sms.css";
+
+@import "../../js/dojo1.1.1/dojox/grid/_grid/simpleGrid.css";
+</style>
+
+		<script type="text/javascript">
+		    var djConfig = {
+			isDebug:true, parseOnLoad:true, usePlainJson:true 
+		    };
+		</script>
+		<script type="text/javascript" src="../../js/dojo1.1.1/dojo/dojo.js"></script>
+
+		<script type="text/javascript"> 
+		dojo.require("dijit.layout.ContentPane");
+		dojo.require("dojo.parser");	
+		dojo.require("dijit.form.Button");
+	    dojo.require("dojo.data.ItemFileReadStore");
+	    dojo.require("dojox.grid.Grid");
+	    dojo.require("dijit.layout.TabContainer");
+	    dojo.require("dojox.grid._data.model");
+	    dojo.require("dijit.form.DateTextBox");
+	    dojo.require("dijit.form.Textarea");
+		
+	</script>
+		<script type="text/javascript"><!--
+		
+			function addStudent(tagname){
+				console.log("add student.");
+				dojo.xhrGet({
+	           	url: 'addStudent.do',
+	           	load: function (data,ioArgs){
+					console.log(data);
+				},
+	           	error: callError,
+	           		content: {name: "test" }
+	        	});
+			}
+			
+			function selectStudent(tagname){
+				dojo.xhrPost({
+	           	url: 'selectStudent.do',
+	           	form:'queryForm',
+	           	load: function (data,ioArgs){
+					console.log(data);
+					data = eval(data);
+					var store = new dojox.grid.data.Objects(null, data);
+		            studentGrid.setModel(store);
+		            studentGrid.refresh();
+				},
+	           	error: callError
+	        	});
+			}
+			
+			function callError(data,ioArgs){
+				console.log(data);
+			}
+			
+		var structure = [{"cells": [[
+             {"field": "name", "name": "姓名"},
+             {"field": "no", "name": "学号"},            
+             {"field": "gender", "name": "性别"},
+             {"field": "phone", "name": "电话"},
+             {"field": "birthday", "name": "生日", "width": "120px"},
+             {"field": "address", "name": "家庭住址"}
+             ]]
+			}];
+		
+		dojo.addOnLoad(function(){
+             studentGrid.setStructure(structure);
+             
+             var mainTabContainer = dijit.byId("mainTabContainer");
+             var importTab = dijit.byId("import");
+             mainTabContainer.selectChild(importTab);
+             showGrid();
+
+             var queryTab = dijit.byId("queryTab");
+             mainTabContainer.selectChild(queryTab);
+             selectStudent();
+          }
+        );
+	</script>
+	</head>
+	<body class="simple">
+		<div id="mainTabContainer" dojoType="dijit.layout.TabContainer"
+			style="width: 100%; height: 100%">
+			<div dojoType="dijit.layout.ContentPane" title="查看学生" id="queryTab">
+				<form action="" id="queryForm" name="queryForm">
+					&ensp; 学号:
+					<input dojoType=dijit.form.TextBox type="text" id="queryNo"
+						name="queryNo" maxlength="16" style="width: 120px;">
+					姓名:
+					<input dojoType=dijit.form.TextBox type="text" id="queryName"
+						name="queryName" maxlength="16" style="width: 100px;">
+					<button dojoType="dijit.form.Button" onClick=selectStudent(this)>
+						查询
+					</button>
+					<div dojoType="dojox.Grid" id="studentGrid" jsId="studentGrid"
+						style="height: 90%"></div>
+				</form>
+				<br />
+
+			</div>
+			<div dojoType="dijit.layout.ContentPane" title="添加学生">
+				<table>
+					<tr>
+						<td colspan="2" align="center" class="title" style="height: 50px;">
+							请填写学生信息
+						</td>
+					</tr>
+					<tr>
+						<td align="right" width="30%">
+							姓名:
+						</td>
+						<td align="left">
+							<input dojoType=dijit.form.TextBox type="text" id="name"
+								name="name" maxlength="16" style="width: 120px;">
+						</td>
+					</tr>
+					<tr>
+						<td align="right">
+							学号:
+						</td>
+						<td align="left">
+							<input dojoType=dijit.form.TextBox type="text" id="no" name="no"
+								maxlength="16" style="width: 120px;">
+						</td>
+					</tr>
+					<tr>
+						<td align="right">
+							性别:
+						</td>
+						<td align="left">
+							<input type="radio" name="gender" id="g1rb1" value="T"
+								dojoType="dijit.form.RadioButton" checked="checked">
+							<label for="g1rb1">
+								男
+							</label>
+							<input type="radio" name="gender" id="g1rb2" value="F"
+								dojoType="dijit.form.RadioButton" />
+							<label for="g1rb2">
+								女
+							</label>
+						</td>
+					</tr>
+					<tr>
+						<td align="right">
+							出生年月:
+						</td>
+						<td align="left">
+							<input id="birthday" name="birthday" type="text"
+								dojoType="dijit.form.DateTextBox"
+								constraints="{datePattern:'dd-MM-yyyy', strict:true}">
+						</td>
+					</tr>
+
+					<tr>
+						<td align="right">
+							电话:
+						</td>
+						<td align="left">
+							<input dojoType=dijit.form.TextBox type="text" id="phone"
+								name="phone" maxlength="20" style="width: 120px;">
+						</td>
+					</tr>
+					<tr>
+						<td align="right">
+							民族:
+						</td>
+						<td align="left">
+							<input dojoType=dijit.form.TextBox type="text" id="nation"
+								name="nation" maxlength="20" style="width: 120px;">
+						</td>
+					</tr>
+					<tr>
+						<td align="right">
+							家庭住址:
+						</td>
+						<td align="left">
+							<input dojoType=dijit.form.TextBox type="text" id="address"
+								name="address" maxlength="50" style="width: 300px;">
+						</td>
+					</tr>
+					<tr>
+						<td align="right">
+							<button dojoType="dijit.form.Button" onClick=addStudent>
+								确定
+							</button>
+						</td>
+						<td align="left">
+							<button dojoType="dijit.form.Button" onClick=reset>
+								取消
+							</button>
+						</td>
+					</tr>
+				</table>
+			</div>
+			<div dojoType="dijit.layout.ContentPane" title="导入学生" id="import">
+				<input dojoType="dijit.form.TextBox" name="filename" type="file"
+					id="file">
+				<button dojoType="dijit.form.Button" onClick=read(this)>
+					读取
+				</button>
+				<button dojoType="dijit.form.Button" onClick=upload(this)
+					id="uploadButton">
+					上传
+				</button>
+				<div dojoType="dojox.Grid" id="uploadGrid" jsId="uploadGrid"
+					style="height: 90%"></div>
+				<script type="text/javascript">
+					function showGrid(){
+					    var uploadGrid = dijit.byId("uploadGrid");
+						uploadGrid.setStructure(structure);
+						uploadGrid.refresh();
+					}
+					
+					var studentInfo = "[{";
+					function read(){
+						console.log("reading file...");
+						var oXL=new ActiveXObject("Excel.application");
+						console.log("Excel.application");
+					    var path=dojo.byId("file").value;
+					    console.log(path);
+					    var oWB=oXL.Workbooks.open(path); 
+					    oWB.worksheets(1).select(); 
+					    var oSheet=oWB.ActiveSheet; 
+				      	for(var i=2;i<4;i++){
+				      		if(i > 2){
+					      		studentInfo +=",{";
+					      	}
+					      	for(var j = 1; j < 7; j ++){
+						      	if(oSheet.Cells(i,j).value!=undefined){
+						      		value=oSheet.Cells(i,j).value;
+									if(j == 1 ){studentInfo += "name:";}else
+									if(j == 2 ){studentInfo += "no:";}else
+									if(j == 3 ){studentInfo += "gender:";}else
+									if(j == 4 ){studentInfo += "phone:";}else
+									if(j == 5 ){
+										studentInfo += "birthday:";
+										var date = new Date(value);	
+										value = date.toLocaleString();
+										value = value.substring(0, value.length - 8);
+										studentInfo += "'" + value + "',";
+										console.log("value = " + value);	
+										continue;
+									}else if(j == 6 ){studentInfo += "address:";}
+							        studentInfo += "'" + value + "',";
+						         }else{
+						         	break;
+						         }
+					      	}
+					      	studentInfo = studentInfo.substring(0, studentInfo.length - 1);
+					      	studentInfo +="}";
+					   	}
+					   	studentInfo +="]";
+					   	oWB.close();
+					   	console.log(studentInfo);
+					   	var uploadGrid = dijit.byId("uploadGrid");
+					   	studentInfoEval = eval(studentInfo);
+						var store = new dojox.grid.data.Objects(null, studentInfoEval);
+		            	uploadGrid.setModel(store);
+		            	uploadGrid.refresh();	
+		            					    
+					}
+					
+					function upload(){
+						var uploadButton = dijit.byId("uploadButton");
+						uploadButton.setLabel("正在上传...");
+						uploadButton = dojo.byId("uploadButton");
+						uploadButton.disabled = true;
+						
+						dojo.xhrPost({
+			           	url: 'addStudent.do',
+			           	content: {name: studentInfo},
+			           	load: function (data,ioArgs){
+							console.log(data);
+				            uploadButton = dijit.byId("uploadButton");
+							uploadButton.setLabel("上传完成");
+						},
+			           	error: callError
+			        	});
+						
+						
+					}
+					
+				</script>
+			</div>
+	</body>
+</html>
