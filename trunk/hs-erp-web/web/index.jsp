@@ -1,33 +1,98 @@
-<%--
-   Licensed to the Apache Software Foundation (ASF) under one or more
-   contributor license agreements.  See the NOTICE file distributed with
-   this work for additional information regarding copyright ownership.
-   The ASF licenses this file to You under the Apache License, Version 2.0
-   (the "License"); you may not use this file except in compliance with
-   the License.  You may obtain a copy of the License at
-   
-       http://www.apache.org/licenses/LICENSE-2.0
-   
-   Unless required by applicable law or agreed to in writing, software
-   distributed under the License is distributed on an "AS IS" BASIS,
-   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-   See the License for the specific language governing permissions and
-   limitations under the License.
-  
-   $Header:$
---%>
+
 <%@ page language="java" contentType="text/html;charset=UTF-8"%>
-<%@ taglib uri="http://beehive.apache.org/netui/tags-databinding-1.0" prefix="netui-data"%>
-<%@ taglib uri="http://beehive.apache.org/netui/tags-html-1.0" prefix="netui"%>
-<%@ taglib uri="http://beehive.apache.org/netui/tags-template-1.0" prefix="netui-template"%>
+<%@ taglib uri="http://beehive.apache.org/netui/tags-databinding-1.0"
+	prefix="netui-data"%>
+<%@ taglib uri="http://beehive.apache.org/netui/tags-html-1.0"
+	prefix="netui"%>
+<%@ taglib uri="http://beehive.apache.org/netui/tags-template-1.0"
+	prefix="netui-template"%>
 <netui:html>
-  <head>
-    <title>Web Application Page</title>
-    <netui:base/>
-  </head>
-  <netui:body>
-    <p>
-      New Web Application Page
-    </p>
-  </netui:body>
+<head>
+<title>华软企业资源管理系统</title>
+<style type="text/css">
+@import "js/dojo1.1.1/dojo/resourcesf/dojo.css";
+
+@import "js/dojo1.1.1/dijit/themes/dijit.css";
+
+@import "js/dojo1.1.1/dijit/themes/tundra/tundra.css";
+
+@import "css/sms.css";
+
+@import "js/dojo1.1.1/dojox/grid/_grid/tundraGrid.css";
+
+html,body {
+	height: 100%;
+	width: 100%;
+	padding: 0px;
+	border: 0;
+	font-size: 12px;
+}
+
+#main {
+	height: 100%;
+	width: 100%;
+	padding: 0;
+	border: 0;
+}
+</style>
+<script type="text/javascript">
+		    var djConfig = {
+			isDebug:true, parseOnLoad:true
+		    };
+		</script>
+<script type="text/javascript" src="js/dojo1.1.1/dojo/dojo.js"></script>
+
+<script type="text/javascript"> 
+		dojo.require("dijit.layout.ContentPane");
+		dojo.require("dijit.layout.TabContainer");
+		dojo.require("dijit.layout.BorderContainer");
+		dojo.require("dijit.TitlePane");
+		dojo.require("dojo.parser");	
+	</script>
+<script type="text/javascript">
+		function loadPage(pageName){
+			document.getElementById("myifrm").src= pageName;
+		}
+	</script>
+</head>
+<netui:body>
+	<div id="main" dojoType="dijit.layout.BorderContainer" class="tundra">
+
+	<div id="header" dojoType="dijit.layout.ContentPane" region="top"
+		style="height: 60px; background-color: #f2f5f9; border: 0px solid #bfbfbfs; padding-top: 0px">
+	<h1 align="center">SMS Header</h1>
+	</div>
+
+	<div dojoType="dijit.layout.ContentPane" duration="200" minSize="20"
+		style="width: 140px;" id="mainMenu" region="left" splitter="true">
+
+	<div dojoType="dijit.TitlePane" title="考试管理"><a
+		href="javaScript:loadPage('pageflow/exam/score.html')"
+		class="commandlink">考试成绩录入</a> <br />
+	<a href="javaScript:loadPage('pageflow/exam/statistic.html')"
+		class="commandlink">成绩查询统计</a> <br />
+	<a href="javaScript:loadPage('pageflow/exam/index.html')"
+		class="commandlink">考试基本信息管理</a></div>
+	<div dojoType="dijit.TitlePane" title="档案管理"><a
+		href="javaScript:loadPage('pageflow/student/index.html')"
+		class="commandlink">学生基本信息管理</a> <br />
+	<a href="javaScript:loadPage('pageflow/teacher/index.html')"
+		class="commandlink">教师基本信息管理</a></div>
+	<div dojoType="dijit.TitlePane" title="班级管理"><a
+		href="javaScript:loadPage('pageflow/clazz/index.html')"
+		class="commandlink">基本信息管理</a></div>
+	</div>
+
+	<div dojoType="dijit.layout.ContentPane" region="center"
+		id="contentContainer"><iframe class="mainContent" id="myifrm"
+		frameborder="0" width="800px" height="100%" scrolling="no"
+		src="pageflow/clazz/index.html" style="border: 0px solid #bfbfbf">
+	</iframe></div>
+	<div dojoType="dijit.layout.ContentPane" id="footer"
+		tabPosition="bottom" align="center" region="bottom" splitter="true"
+		style="height: 40px"><br />
+	Copyright &copy; 2008 - 2010 Hua Soft ERP Inc. All Rights Reserved <br />
+	</div>
+	</div>
+</netui:body>
 </netui:html>
