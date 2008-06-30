@@ -1,27 +1,9 @@
+<%@ page language="java" pageEncoding="UTF-8"%>
+<%@include file="../inc/head.jsp"%>
 <html>
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-		<title>Dijit Theme Tester</title>
-
-		<style type="text/css">
-@import "../../js/dojo1.1.1/dojo/resources/dojo.css";
-
-@import "../../js/dojo1.1.1/dijit/themes/dijit.css";
-
-@import "../../js/dojo1.1.1/dijit/themes/tundra/tundra.css";
-
-@import "../../css/sms.css";
-
-@import "../../js/dojo1.1.1/dojox/grid/_grid/tundraGrid.css";
-</style>
-
-		<script type="text/javascript">
-		    var djConfig = {
-			isDebug:true, parseOnLoad:true, usePlainJson:true 
-		    };
-		</script>
-		<script type="text/javascript" src="../../js/dojo1.1.1/dojo/dojo.js"></script>
-
+		<title>班级管理</title>
 		<script type="text/javascript"> 
 		dojo.require("dijit.layout.ContentPane");
 		dojo.require("dojo.parser");	
@@ -33,49 +15,8 @@
 	    dojo.require("dijit.form.DateTextBox");
 	    dojo.require("dijit.form.Textarea");
 	    dojo.require("dijit.form.FilteringSelect");
-		
 	</script>
 		<script type="text/javascript">
-			function addClazz(tagname){
-				console.log("add clazz.");
-				dojo.xhrGet({
-	           	url: 'addClazz.do',
-	           	load: function (data,ioArgs){
-					console.log(data);
-				},
-	           	error: callError,
-	           		content: {name: "test" }
-	        	});
-			}
-			
-			function queryClazz(tagname){
-				dojo.xhrPost({
-	           	url: 'queryClazz.do',
-	           	form:'queryForm',
-	           	load: function (data,ioArgs){
-					console.log(data);
-					data = eval(data);
-					var store = new dojox.grid.data.Objects(null, data);
-		            clazzGrid.setModel(store);
-		            clazzGrid.refresh();
-				},
-	           	error: callError
-	        	});
-			}
-			
-			function callError(data,ioArgs){
-				console.log(data);
-			}
-			
-		var structure = [{"cells": [[
-             {"field": "acdemicYear", "name": "学年度"},
-             {"field": "name", "name": "班级名称"},            
-             {"field": "headTeacher", "name": "班主任"},
-             {"field": "monitor", "name": "班长"},
-             {"field": "studentCount", "name": "班级人数"}
-             ]]
-			}];
-		
 		dojo.addOnLoad(function(){
              clazzGrid.setStructure(structure);
              var mainTabContainer = dijit.byId("mainTabContainer");
@@ -84,6 +25,15 @@
              queryClazz();
           }
         );
+        
+        var structure = [{"cells": [[
+		     {"field": "acdemicYear", "name": "学年度"},
+		     {"field": "name", "name": "班级名称"},            
+		     {"field": "headTeacher", "name": "班主任"},
+		     {"field": "monitor", "name": "班长"},
+		     {"field": "studentCount", "name": "班级人数"}
+		     ]]
+		}];
 	</script>
 	</head>
 	<body class="tundra">
