@@ -2,7 +2,6 @@
 <%@include file="../inc/head.jsp"%>
 <html>
 	<head>
-		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 		<title>班级管理</title>
 		<script type="text/javascript"> 
 		dojo.require("dijit.layout.ContentPane");
