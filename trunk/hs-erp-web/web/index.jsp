@@ -79,14 +79,14 @@ html,body {
 	<a href="javaScript:loadPage('pageflow/teacher/index.html')"
 		class="commandlink">教师基本信息管理</a></div>
 	<div dojoType="dijit.TitlePane" title="班级管理"><a
-		href="javaScript:loadPage('pageflow/clazz/index.html')"
+		href="javaScript:loadPage('pageflow/clazz/index.jsp')"
 		class="commandlink">基本信息管理</a></div>
 	</div>
 
 	<div dojoType="dijit.layout.ContentPane" region="center"
 		id="contentContainer"><iframe class="mainContent" id="myifrm"
 		frameborder="0" width="800px" height="100%" scrolling="no"
-		src="pageflow/clazz/index.html" style="border: 0px solid #bfbfbf">
+		src="pageflow/clazz/index.jsp" style="border: 0px solid #bfbfbf">
 	</iframe></div>
 	<div dojoType="dijit.layout.ContentPane" id="footer"
 		tabPosition="bottom" align="center" region="bottom" splitter="true"
