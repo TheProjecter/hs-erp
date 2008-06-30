@@ -24,7 +24,3 @@ function queryClazz(tagname){
    	error: callError
 	});
 }
-	
-function callError(data,ioArgs){
-	console.log(data);
-}
