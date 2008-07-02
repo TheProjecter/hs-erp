@@ -59,7 +59,7 @@ html,body {
 	<div id="main" dojoType="dijit.layout.BorderContainer" class="tundra">
 
 	<div id="header" dojoType="dijit.layout.ContentPane" region="top"
-		style="height: 60px; background-color: #f2f5f9; border: 0px solid #bfbfbfs; padding-top: 0px">
+		style="height: 60px; background-color: #f2f5f9; border: 0px solid #bfbfbf; padding-top: 0px">
 	<h1 align="center">SMS Header</h1>
 	</div>
 
