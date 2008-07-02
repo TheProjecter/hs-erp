@@ -67,16 +67,16 @@ html,body {
 		style="width: 140px;" id="mainMenu" region="left" splitter="true">
 
 	<div dojoType="dijit.TitlePane" title="考试管理"><a
-		href="javaScript:loadPage('pageflow/exam/score.html')"
+		href="javaScript:loadPage('pageflow/exam/score.jsp')"
 		class="commandlink">考试成绩录入</a> <br />
-	<a href="javaScript:loadPage('pageflow/exam/statistic.html')"
+	<a href="javaScript:loadPage('pageflow/exam/statistic.jsp')"
 		class="commandlink">成绩查询统计</a> <br />
-	<a href="javaScript:loadPage('pageflow/exam/index.html')"
+	<a href="javaScript:loadPage('pageflow/exam/index.jsp')"
 		class="commandlink">考试基本信息管理</a></div>
 	<div dojoType="dijit.TitlePane" title="档案管理"><a
-		href="javaScript:loadPage('pageflow/student/index.html')"
+		href="javaScript:loadPage('pageflow/student/index.jsp')"
 		class="commandlink">学生基本信息管理</a> <br />
-	<a href="javaScript:loadPage('pageflow/teacher/index.html')"
+	<a href="javaScript:loadPage('pageflow/teacher/index.jsp')"
 		class="commandlink">教师基本信息管理</a></div>
 	<div dojoType="dijit.TitlePane" title="班级管理"><a
 		href="javaScript:loadPage('pageflow/clazz/index.jsp')"
