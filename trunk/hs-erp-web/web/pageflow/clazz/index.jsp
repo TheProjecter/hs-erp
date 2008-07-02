@@ -17,7 +17,9 @@
 	</script>
 		<script type="text/javascript">
 		dojo.addOnLoad(function(){
-             clazzGrid.setStructure(structure);
+			 var st = new Structure();
+			 console.log(st);
+             clazzGrid.setStructure(st.structure);
              var mainTabContainer = dijit.byId("mainTabContainer");
              var queryTab = dijit.byId("queryTab");
              mainTabContainer.selectChild(queryTab);
@@ -25,14 +27,6 @@
           }
         );
         
-        var structure = [{"cells": [[
-		     {"field": "acdemicYear", "name": "学年度"},
-		     {"field": "name", "name": "班级名称"},            
-		     {"field": "headTeacher", "name": "班主任"},
-		     {"field": "monitor", "name": "班长"},
-		     {"field": "studentCount", "name": "班级人数"}
-		     ]]
-		}];
 	</script>
 	</head>
 	<body class="tundra">
