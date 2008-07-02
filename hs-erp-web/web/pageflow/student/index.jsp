@@ -1,36 +1,20 @@
+<%@ page language="java" pageEncoding="UTF-8"%>
+<%@include file="../inc/head.jsp"%>
 <html>
-	<head>
-		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-		<title>Dijit Theme Tester</title>
+<head>
+<style type="text/css">
+#grid {
+	border: 1px solid #333;
+	height: 200px;
+}
 
-		<style type="text/css">
-@import "../../js/dojo1.1.1/dojo/resources/dojo.css";
-
-@import "../../js/dojo1.1.1/dijit/themes/dijit.css";
-
-@import "../../js/dojo1.1.1/dijit/themes/tundra/tundra.css";
-
-@import "../../css/sms.css";
-
-@import "../../js/dojo1.1.1/dojox/grid/_grid/tundraGrid.css";
-#grid { 
-			border: 1px solid #333;
-			height: 200px;
-		}
-		#grid { 
-			border: 1px solid #333;
-			height: 200px;
-		}
+#grid {
+	border: 1px solid #333;
+	height: 200px;
+}
 </style>
 
-		<script type="text/javascript">
-		    var djConfig = {
-			isDebug:true, parseOnLoad:true, usePlainJson:true 
-		    };
-		</script>
-		<script type="text/javascript" src="../../js/dojo1.1.1/dojo/dojo.js"></script>
-
-		<script type="text/javascript"> 
+<script type="text/javascript"> 
 		dojo.require("dijit.layout.ContentPane");
 		dojo.require("dojo.parser");	
 		dojo.require("dijit.form.Button");
@@ -42,7 +26,7 @@
 	    dojo.require("dijit.form.Textarea");
 		
 	</script>
-		<script type="text/javascript"><!--
+<script type="text/javascript"><!--
 			function addStudent(tagname){
 				console.log("add student.");
 				dojo.xhrGet({
@@ -107,135 +91,95 @@
           }
         );
 	</script>
-	</head>
-	<body class="tundra">
-		<div id="mainTabContainer" dojoType="dijit.layout.TabContainer"
-			style="width: 100%; height: 100%">
-			<div dojoType="dijit.layout.ContentPane" title="查看学生" id="queryTab">
-				<form action="" id="queryForm" name="queryForm">
-					&ensp; 学号:
-					<input dojoType=dijit.form.TextBox type="text" id="queryNo"
-						name="queryNo" maxlength="16" style="width: 120px;">
-					姓名:
-					<input dojoType=dijit.form.TextBox type="text" id="queryName"
-						name="queryName" maxlength="16" style="width: 100px;">
-					<button dojoType="dijit.form.Button" onClick=selectStudent(this)>
-						查询
-					</button>
-					
-					<div dojoType="dojox.Grid" id="studentGrid" jsId="studentGrid" autoWidth="false" autoHeight="false"
-						elasticView="2" style="height: 90%; "></div>
-				</form>
-				<br />
+</head>
+<body class="tundra">
+<div id="mainTabContainer" dojoType="dijit.layout.TabContainer"
+	style="width: 100%; height: 100%">
+<div dojoType="dijit.layout.ContentPane" title="查看学生" id="queryTab">
+<form action="" id="queryForm" name="queryForm">&ensp; 学号: <input
+	dojoType=dijit.form.TextBox type="text" id="queryNo" name="queryNo"
+	maxlength="16" style="width: 120px;"> 姓名: <input
+	dojoType=dijit.form.TextBox type="text" id="queryName" name="queryName"
+	maxlength="16" style="width: 100px;">
+<button dojoType="dijit.form.Button" onClick=selectStudent(this)>
+查询</button>
 
-			</div>
-			<div dojoType="dijit.layout.ContentPane" title="添加学生">
-				<table cellspacing="10px">
-					<tr>
-						<td colspan="2" align="center" class="title" style="height: 50px;">
-							请填写学生信息
-						</td>
-					</tr>
-					<tr>
-						<td align="right" width="30%">
-							姓名:
-						</td>
-						<td align="left">
-							<input dojoType=dijit.form.TextBox type="text" id="name"
-								name="name" maxlength="16" style="width: 120px;">
-						</td>
-					</tr>
-					<tr>
-						<td align="right">
-							学号:
-						</td>
-						<td align="left">
-							<input dojoType=dijit.form.TextBox type="text" id="no" name="no"
-								maxlength="16" style="width: 120px;">
-						</td>
-					</tr>
-					<tr>
-						<td align="right">
-							性别:
-						</td>
-						<td align="left">
-							<input type="radio" name="gender" id="g1rb1" value="T"
-								dojoType="dijit.form.RadioButton" checked="checked">
-							<label for="g1rb1">
-								男
-							</label>
-							<input type="radio" name="gender" id="g1rb2" value="F"
-								dojoType="dijit.form.RadioButton" />
-							<label for="g1rb2">
-								女
-							</label>
-						</td>
-					</tr>
-					<tr>
-						<td align="right">
-							出生年月:
-						</td>
-						<td align="left">
-							<input id="birthday" name="birthday" type="text"
-								dojoType="dijit.form.DateTextBox"
-								constraints="{datePattern:'dd-MM-yyyy', strict:true}">
-						</td>
-					</tr>
+<div dojoType="dojox.Grid" id="studentGrid" jsId="studentGrid"
+	autoWidth="false" autoHeight="false" elasticView="2"
+	style="height: 90%;"></div>
+</form>
+<br />
 
-					<tr>
-						<td align="right">
-							电话:
-						</td>
-						<td align="left">
-							<input dojoType=dijit.form.TextBox type="text" id="phone"
-								name="phone" maxlength="20" style="width: 120px;">
-						</td>
-					</tr>
-					<tr>
-						<td align="right">
-							民族:
-						</td>
-						<td align="left">
-							<input dojoType=dijit.form.TextBox type="text" id="nation"
-								name="nation" maxlength="20" style="width: 120px;">
-						</td>
-					</tr>
-					<tr>
-						<td align="right">
-							家庭住址:
-						</td>
-						<td align="left">
-							<input dojoType=dijit.form.TextBox type="text" id="address"
-								name="address" maxlength="50" style="width: 300px;">
-						</td>
-					</tr>
-					<tr>
-						<td align="right">
-							<button dojoType="dijit.form.Button" onClick=addStudent>
-								确定
-							</button>
-						</td>
-						<td align="left">
-							<button dojoType="dijit.form.Button" onClick=reset>
-								取消
-							</button>
-						</td>
-					</tr>
-				</table>
-			</div>
-			<div dojoType="dijit.layout.ContentPane" title="导入学生" id="import">
-				<input dojoType="dijit.form.TextBox" name="filename" type="file"
-					id="file">
-				<button dojoType="dijit.form.Button" onClick=read(this)>
-					读取
-				</button>
-				<button dojoType="dijit.form.Button" onClick=upload(this)
-					id="uploadButton">
-					上传
-				</button>
-				<div dojoType="dojox.Grid" id="uploadGrid" jsId="uploadGrid"  autoWidth="false" autoHeight="false"
-					elasticView="2"  style="height: 90%"></div>
-				<script type="text/javascript">
+</div>
+<div dojoType="dijit.layout.ContentPane" title="添加学生">
+<table cellspacing="10px">
+	<tr>
+		<td colspan="2" align="center" class="title" style="height: 50px;">
+		请填写学生信息</td>
+	</tr>
+	<tr>
+		<td align="right" width="30%">姓名:</td>
+		<td align="left"><input dojoType=dijit.form.TextBox type="text"
+			id="name" name="name" maxlength="16" style="width: 120px;"></td>
+	</tr>
+	<tr>
+		<td align="right">学号:</td>
+		<td align="left"><input dojoType=dijit.form.TextBox type="text"
+			id="no" name="no" maxlength="16" style="width: 120px;"></td>
+	</tr>
+	<tr>
+		<td align="right">性别:</td>
+		<td align="left"><input type="radio" name="gender" id="g1rb1"
+			value="T" dojoType="dijit.form.RadioButton" checked="checked">
+		<label for="g1rb1"> 男 </label> <input type="radio" name="gender"
+			id="g1rb2" value="F" dojoType="dijit.form.RadioButton" /> <label
+			for="g1rb2"> 女 </label></td>
+	</tr>
+	<tr>
+		<td align="right">出生年月:</td>
+		<td align="left"><input id="birthday" name="birthday" type="text"
+			dojoType="dijit.form.DateTextBox"
+			constraints="{datePattern:'dd-MM-yyyy', strict:true}"></td>
+	</tr>
+
+	<tr>
+		<td align="right">电话:</td>
+		<td align="left"><input dojoType=dijit.form.TextBox type="text"
+			id="phone" name="phone" maxlength="20" style="width: 120px;">
+		</td>
+	</tr>
+	<tr>
+		<td align="right">民族:</td>
+		<td align="left"><input dojoType=dijit.form.TextBox type="text"
+			id="nation" name="nation" maxlength="20" style="width: 120px;">
+		</td>
+	</tr>
+	<tr>
+		<td align="right">家庭住址:</td>
+		<td align="left"><input dojoType=dijit.form.TextBox type="text"
+			id="address" name="address" maxlength="50" style="width: 300px;">
+		</td>
+	</tr>
+	<tr>
+		<td align="right">
+		<button dojoType="dijit.form.Button" onClick=addStudent>确定</button>
+		</td>
+		<td align="left">
+		<button dojoType="dijit.form.Button" onClick=reset>取消</button>
+		</td>
+	</tr>
+</table>
+</div>
+<div dojoType="dijit.layout.ContentPane" title="导入学生" id="import">
+<input dojoType="dijit.form.TextBox" name="filename" type="file"
+	id="file">
+<button dojoType="dijit.form.Button" onClick=read(this)>读取</button>
+<button dojoType="dijit.form.Button" onClick=upload(this)
+	id="uploadButton">上传</button>
+<div dojoType="dojox.Grid" id="uploadGrid" jsId="uploadGrid"
+	autoWidth="false" autoHeight="false" elasticView="2"
+	style="height: 90%"></div>
+<script type="text/javascript">
 					function showGrid(){
 					    var uploadGrid = dijit.byId("uploadGrid");
 						uploadGrid.setStructure(structure);
@@ -309,7 +253,6 @@
 			        	});
 					}
 					
-				</script>
-			</div>
-	</body>
+				</script></div>
+</body>
 </html>

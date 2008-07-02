@@ -13,6 +13,6 @@
 		};
 	</script>
 	<script type="text/javascript" src="../../js/dojo1.1.1/dojo/dojo.js"></script>
-	<script type="text/javascript" src="object.js"></script>
-	<script type="text/javascript" src="../inc/action.js"></script>
+	<script type="text/javascript" src="action.js"></script>
+	<script type="text/javascript" src="../inc/common.js"></script>
 	
