@@ -24,3 +24,19 @@ function queryClazz(tagname){
    	error: callError
 	});
 }
+
+/**
+ * Structure
+ * @param {type}  
+ */
+ function Structure() {
+ 	this.structure = [{"cells": [[
+		     {"field": "acdemicYear", "name": "学年度"},
+		     {"field": "name", "name": "班级名称"},            
+		     {"field": "headTeacher", "name": "班主任"},
+		     {"field": "monitor", "name": "班长"},
+		     {"field": "studentCount", "name": "班级人数"}
+		     ]]}];
+ }
+ 
+ 
