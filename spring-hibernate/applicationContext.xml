@@ -37,7 +37,6 @@
 			<value>10</value>
 		</property>
 	</bean>
-
 	<bean id="hibernateProperties"
 		class="org.springframework.beans.factory.config.PropertiesFactoryBean">
 		<property name="properties">
@@ -54,7 +53,6 @@
 			</props>
 		</property>
 	</bean>
-
 	<bean id="sessionFactory"
 		class="org.springframework.orm.hibernate3.LocalSessionFactoryBean">
 		<property name="dataSource" ref="dataSource" />
@@ -65,5 +63,8 @@
 			</list>
 		</property>
 	</bean>
-
+	<bean id="transactionManager"
+		class="org.springframework.orm.hibernate3.HibernateTransactionManager">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
 </beans>
