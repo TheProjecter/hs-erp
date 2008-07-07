@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" 
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+   
+<hibernate-mapping>
+
+	<class name="com.ohis.common.domain.Client" 
+		table="Client" lazy="false" mutable="false">
+		<id name="id" column="CLIENT_ID" type="java.lang.Long" unsaved-value="-1">
+			<generator class="assigned"/>
+		</id>
+		<property name="clientName" column="CLIENT_NAME"/>
+		<property name="short_nm" column="SHORT_NM"/>
+		<property name="ldapUserGroup" column="LDAPGROUP"/>
+		<property name="contentDir" column="CONDIR"/>
+		<property name="clientGroup" column="CLIENT_GROUP"/>
+		<set name="users" inverse="true" cascade="all">
+			<key column="CLIENT_ID"/>
+			<one-to-many class="com.ohis.common.domain.User"/>
+		</set>
+	</class>
+	
+	<class name="com.ohis.common.domain.User" table="portaluser"  lazy="false">
+		<id name="id" column="ID" type="java.lang.Long" unsaved-value="-1">
+			<generator class="assigned" />
+		</id>
+		<property name="userName" column="USERNAME"/>
+		<property name="firstName" column="FIRSTNAME"/>
+		<property name="lastName" column="LASTNAME"/>
+		<property name="address1" column="ADDRESS1"/>
+		<property name="address2" column="ADDRESS2"/>
+		<property name="addrCity" column="ADDRCITY"/>
+		<property name="addrState" column="ADDRSTATE"/>
+		<property name="addrZip" column="ADDRZIP"/>
+		<property name="addrCountry" column="ADDRCOUNTRY"/>
+		<property name="phone" column="PHONE"/>
+		<property name="tmpPwd" column="TMPPWD"/>
+		<property name="email" column="EMAIL"/>
+		<property name="title" column="TITLE"/>
+		<property name="department" column="DEPARTMENT"/>
+		<property name="inActive" column="INACTIVE"/>
+
+		<many-to-one name="client" column="CLIENT_ID" class="com.ohis.common.domain.Client" not-null="true"/>
+	</class>	
+	<class name="com.ohis.common.domain.Holiday" schema="com_data"
+		table="holiday"  lazy="false" mutable="false">
+		<composite-id>
+		        <key-property name="currency" column="CCY"/>
+		        <key-property name="market" column="MARKET"/>
+		        <key-property name="day" column="day" type="date"/>
+		</composite-id>
+		<property name="description" column="description"/>
+		<property name="dateAdded" column="date_added"/>
+		<property name="dateUpdated" column="date_updated"/>
+		<property name="active" column="active" type="yes_no"/>
+	</class>
+	
+</hibernate-mapping>

@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 
+	@information: $Id: //depot/portal/application/OhisWEB/WebContent/WEB-INF/applicationContext.xml#98 $
+	@last_Modified_by: $Author: mzhang $
+	@last_Modified_on: $DateTime: 2008/06/04 02:08:44 $
+	@version: $Revision: #98 $
+-->
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:jee="http://www.springframework.org/schema/jee"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.0.xsd
+           http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-2.0.xsd
+           http://www.springframework.org/schema/jee http://www.springframework.org/schema/jee/spring-jee-2.0.xsd
+           http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-2.0.xsd">
+
+	<bean id="dataSource"
+		class="org.apache.commons.dbcp.BasicDataSource">
+
+		<property name="driverClassName">
+			<value>oracle.jdbc.driver.OracleDriver</value>
+		</property>
+		<property name="username">
+			<value>Devportal</value>
+		</property>
+		<property name="password">
+			<value>Devportal123</value>
+		</property>
+		<property name="url">
+			<value>jdbc:oracle:thin:@192.168.50.14:1521:ora10g</value>
+		</property>
+		<property name="defaultAutoCommit">
+			<value>true</value>
+		</property>
+		<property name="maxActive">
+			<value>10</value>
+		</property>
+	</bean>
+
+	<bean id="hibernateProperties"
+		class="org.springframework.beans.factory.config.PropertiesFactoryBean">
+		<property name="properties">
+			<props>
+				<!--<prop key="hibernate.hbm2ddl.auto">update</prop>    -->
+				<prop key="hibernate.dialect">
+					org.hibernate.dialect.Oracle9Dialect
+				</prop>
+				<prop key="hibernate.query.substitutions">
+					true 1, false 0
+				</prop>
+				<prop key="hibernate.show_sql">false</prop>
+				<prop key="hibernate.format_sql">true</prop>
+			</props>
+		</property>
+	</bean>
+
+	<bean id="sessionFactory"
+		class="org.springframework.orm.hibernate3.LocalSessionFactoryBean">
+		<property name="dataSource" ref="dataSource" />
+		<property name="hibernateProperties" ref="hibernateProperties" />
+		<property name="mappingResources">
+			<list>
+				<value>common.hbm.xml</value>
+			</list>
+		</property>
+	</bean>
+
+</beans>
