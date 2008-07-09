@@ -46,21 +46,27 @@ public class StudentControler extends PageFlowController {
 		JSONArray array = new JSONArray();
 		
 		JSONObject xiushu = new JSONObject();
-		xiushu.put("name", "张修暑");
-		xiushu.put("no", "0001");
-		xiushu.put("phone", "13671820444");
-		xiushu.put("gender", "男");
-		xiushu.put("birthday", "1983-07-23");
-		xiushu.put("address", "上海市罗山路");
+		xiushu.put("no", "AZ20070322");
+		xiushu.put("name", "钢材");
+		xiushu.put("storehouse", "A");
+		xiushu.put("place", "c12");
+		xiushu.put("number", "30");
+		xiushu.put("type", "Wg112");
+		xiushu.put("color", "灰");
+		xiushu.put("material", "钨");
+		//xiushu.put("date", "2007-03-12");
 		array.put(xiushu);
 		
 		JSONObject yulei = new JSONObject();
-		yulei.put("name", "葛以磊");
-		yulei.put("no", "0002");
-		yulei.put("phone", "13671820555");
-		yulei.put("gender", "男");
-		yulei.put("birthday", "1981-09-23");
-		yulei.put("address", "上海市罗山路");
+		yulei.put("no", "DS20070304");
+		yulei.put("name", "毛巾");
+		yulei.put("storehouse", "B");
+		yulei.put("place", "h33");
+		yulei.put("number", "43");
+		yulei.put("type", "M562");
+		yulei.put("color", "浅黄");
+		yulei.put("material", "棉");
+		//yulei.put("date", "2007-08-09");
 		array.put(yulei);
 		
 		
