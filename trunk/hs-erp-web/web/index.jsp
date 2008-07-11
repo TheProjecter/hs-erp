@@ -17,7 +17,7 @@
 @import "js/dojo1.1.1/dijit/themes/tundra/tundra.css";
 
 @import "css/sms.css";
-
+ 
 @import "js/dojo1.1.1/dojox/grid/_grid/tundraGrid.css";
 
 html,body {
@@ -34,6 +34,7 @@ html,body {
 	padding: 0;
 	border: 0;
 }
+
 </style>
 <script type="text/javascript">
 		    var djConfig = {
@@ -59,34 +60,81 @@ html,body {
 	<div id="main" dojoType="dijit.layout.BorderContainer" class="tundra">
 
 	<div id="header" dojoType="dijit.layout.ContentPane" region="top"
-		style="height: 60px; background-color: #f2f5f9; border: 0px solid #bfbfbf; padding-top: 0px">
-	<h1 align="center">SMS Header</h1>
+		style="height: 60px; background-color: #f2f5f9; border: 0px solid #bfbfbfs; padding-top: 0px;margin:0px 0px 30px 0px">
+	<h1 align="center">HS Header</h1>
 	</div>
-
+    	<div id="toolsbar" dojoType="dijit.layout.ContentPane"
+		style="height: 58px;width: 985px;z-index:100; background-color: #f2f5f9; border: 1px solid #FFCC99; position:absolute ;padding-top: 0px;  margin:60px 0px 0px 0px">
+			   	<div id="XG"><a href="javaScript:myifrm.edit();" ></a></div>
+			   	<div id="SC"><a href="javaScript:myifrm.cancel();" ></a></div>
+			   	<div id="SX"><a href="javaScript:myifrm.refresh();" ></a></div>
+			   	<div id="DY"><a href="javaScript:print();" ></a></div>
+			   	<div id="DC"><a href="javaScript:AutomateExcel1();" ></a></div>
+			   	<div id="TC"><a href="javaScript:myifrm.exit();" ></a></div>
+		</div>
 	<div dojoType="dijit.layout.ContentPane" duration="200" minSize="20"
-		style="width: 140px;" id="mainMenu" region="left" splitter="true">
+		style="width: 145px;margin:30px 0px 0px 0px" id="mainMenu" region="left" splitter="true" >
 
-	<div dojoType="dijit.TitlePane" title="考试管理"><a
-		href="javaScript:loadPage('pageflow/exam/score.jsp')"
-		class="commandlink">考试成绩录入</a> <br />
+	<div dojoType="dijit.TitlePane" title="采购管理">
+	<a href="javaScript:loadPage('pageflow/exam/score.jsp')"
+		class="commandlink">采购信息</a><br />
 	<a href="javaScript:loadPage('pageflow/exam/statistic.jsp')"
-		class="commandlink">成绩查询统计</a> <br />
+		class="commandlink">供应商信息</a><br /> 
 	<a href="javaScript:loadPage('pageflow/exam/index.jsp')"
 		class="commandlink">考试基本信息管理</a></div>
-	<div dojoType="dijit.TitlePane" title="档案管理"><a
-		href="javaScript:loadPage('pageflow/student/index.jsp')"
-		class="commandlink">学生基本信息管理</a> <br />
-	<a href="javaScript:loadPage('pageflow/teacher/index.jsp')"
-		class="commandlink">教师基本信息管理</a></div>
-	<div dojoType="dijit.TitlePane" title="班级管理"><a
-		href="javaScript:loadPage('pageflow/clazz/index.jsp')"
-		class="commandlink">基本信息管理</a></div>
+	<div dojoType="dijit.TitlePane" title="仓库管理">
+	<a href="javaScript:loadPage('pageflow/student/index.jsp')"
+		class="commandlink">原材料入库</a> <br />
+	<a href="javaScript:loadPage('pageflow/storehouseManage/goodsOutIndex.jsp')"
+		class="commandlink">原材料出库</a><br/>
+	<a href="javaScript:loadPage('pageflow/storehouseManage/withdrawGoods.jsp')"
+		class="commandlink">入库退货 </a><br/>	
+	<a href="javaScript:loadPage('pageflow/teacher/index.html')"
+		class="commandlink">成品入库 </a><br/>
+	<a href="javaScript:loadPage('pageflow/teacher/index.html')"
+		class="commandlink">成品出库 </a><br/>	
+	<a href="javaScript:loadPage('pageflow/teacher/index.html')"
+		class="commandlink">不良品入库</a><br/>
+	<a href="javaScript:loadPage('pageflow/teacher/index.html')"
+		class="commandlink">不良品出库</a><br/>
+	<a href="javaScript:loadPage('pageflow/teacher/index.html')"
+		class="commandlink">转&nbsp;库&nbsp; </a>
+		</div>
+	<div dojoType="dijit.TitlePane" title="销售管理"><a
+		href="javaScript:loadPage('pageflow/clazz/index.html')"
+		class="commandlink">客户管理</a><br/>
+		<a
+		href="javaScript:loadPage('pageflow/clazz/index.html')"
+		class="commandlink">订单管理</a>
+		</div>
+		
+	<div dojoType="dijit.TitlePane" title="财务管理">
+	<!--<a  href="javaScript:loadPage('pageflow/clazz/index.html')"
+		class="commandlink">客户管理</a>
+		<a
+		href="javaScript:loadPage('pageflow/clazz/index.html')"
+		class="commandlink">订单管理</a>-->
+		</div>
+	<div dojoType="dijit.TitlePane" title="办公管理">
+	<a href="javaScript:loadPage('pageflow/clazz/index.html')"
+		class="commandlink">部门管理</a><br/>
+		<a
+		href="javaScript:loadPage('pageflow/clazz/index.html')"
+		class="commandlink">员工管理</a><br/>
+		<a
+		href="javaScript:loadPage('pageflow/clazz/index.html')"
+		class="commandlink">考勤管理</a><br/>
+		<a
+		href="javaScript:loadPage('pageflow/clazz/index.html')"
+		class="commandlink">奖惩管理</a>
+		</div>
+	
 	</div>
 
 	<div dojoType="dijit.layout.ContentPane" region="center"
-		id="contentContainer"><iframe class="mainContent" id="myifrm"
+		id="contentContainer" style="margin:30px 0px 0px 0px"><iframe class="mainContent" id="myifrm"
 		frameborder="0" width="800px" height="100%" scrolling="no"
-		src="pageflow/clazz/index.jsp" style="border: 0px solid #bfbfbf">
+		src="pageflow/clazz/index.html" style="border: 0px solid #bfbfbf">
 	</iframe></div>
 	<div dojoType="dijit.layout.ContentPane" id="footer"
 		tabPosition="bottom" align="center" region="bottom" splitter="true"
