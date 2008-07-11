@@ -23,3 +23,89 @@
 	margin-bottom: 1em;
 	border: 1px solid #bfbfbf;
 }
+
+/*对左侧菜单子菜单栏的hover控制*/
+a:hover{background-position:0 18px;
+color:#000066;
+background-color:#FFCC99;
+font: 12px bold;
+border:1px solid #0000CC;
+display: block;
+}
+/*工具栏设置*/
+#toolsbar #XG,#SC,#SX,#DY,#DC,#TC{
+	width:60px;
+	height:54px;
+	float:left;
+	position:relative;
+}
+
+#toolsbar #XG a{
+	width:60px;
+	height:54px;
+	background:url(../image-s/button/1/XG.gif);
+}
+#toolsbar #XG a:hover{
+	background:url(../image-s/button/2/XG.gif);
+}
+#toolsbar #XG a:active{
+	background:url(../image-s/button/3/XG.gif);
+}
+
+#toolsbar #SC a{
+	width:60px;
+	height:54px;
+	background:url(../image-s/button/1/SC.gif);
+}
+#toolsbar #SC a:hover{
+	background:url(../image-s/button/2/SC.gif);
+}
+#toolsbar #SC a:active{
+	background:url(../image-s/button/3/SC.gif);
+}
+#toolsbar #SX a{
+	width:60px;
+	height:54px;
+	background:url(../image-s/button/1/SX.gif);
+}
+#toolsbar #SX a:hover{
+	background:url(../image-s/button/2/SX.gif);
+}
+#toolsbar #SX a:active{
+	background:url(../image-s/button/3/SX.gif);
+}
+#toolsbar #DY a{
+	width:60px;
+	height:54px;
+	background:url(../image-s/button/1/DY.gif);
+}
+#toolsbar #DY a:hover{
+	background:url(../image-s/button/2/DY.gif);
+}
+#toolsbar #DY a:active{
+	background:url(../image-s/button/3/DY.gif);
+}
+#toolsbar #DC a{
+	width:60px;
+	height:54px;
+	background:url(../image-s/button/1/DC.gif);
+}
+#toolsbar #DC a:hover{
+	background:url(../image-s/button/2/DC.gif);
+}
+#toolsbar #DC a:active{
+	background:url(../image-s/button/3/DC.gif);
+}
+
+#toolsbar #TC a{
+	width:60px;
+	height:54px;
+	
+	background:url(../image-s/button/1/TC.gif);
+}
+#toolsbar #TC a:hover{
+	background:url(../image-s/button/2/TC.gif);
+}
+#toolsbar #TC a:active{
+	background:url(../image-s/button/3/TC.gif);
+}
