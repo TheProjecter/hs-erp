@@ -1,20 +1,9 @@
 <%@ page language="java" pageEncoding="UTF-8"%>
 <%@include file="../inc/head.jsp"%>
-<html>
-<head>
-<style type="text/css">
-#grid {
-	border: 1px solid #333;
-	height: 200px;
-}
-
-#grid {
-	border: 1px solid #333;
-	height: 200px;
-}
-</style>
-
-<script type="text/javascript"> 
+<html> 
+	<head>
+		<title>Dijit Theme Tester</title>
+		<script type="text/javascript"> 
 		dojo.require("dijit.layout.ContentPane");
 		dojo.require("dojo.parser");	
 		dojo.require("dijit.form.Button");
@@ -26,7 +15,7 @@
 	    dojo.require("dijit.form.Textarea");
 		
 	</script>
-<script type="text/javascript"><!--
+		<script type="text/javascript"><!--
 			function addStudent(tagname){
 				console.log("add student.");
 				dojo.xhrGet({
@@ -38,9 +27,8 @@
 	           		content: {name: "test" }
 	        	});
 			}
-			
-			function queryStudent(tagname){
-			
+			//查询物品
+			function queryGoods(tagname){
 				dojo.xhrPost({
 	           	url: 'queryStudent.do',
 	           	form:'queryForm',
@@ -54,139 +42,138 @@
 	           	error: callError
 	        	});
 			}
+			//入库确认
+			function inStorehouse(tagname){
+			dojo.xhrPost({
+	           	url: 'inStorehose.do',
+	           	//form:'queryForm',??
+	           	load: function (data,ioArgs){
+					console.log(data);
+					data = eval(data);
+					var store = new dojox.grid.data.Objects(null, data);
+		            uploadGrid.setModel(store);
+		            uploadGrid.refresh();
+				},
+	           	error: callError
+	        	});
+			}
 			
 			function callError(data,ioArgs){
 				console.log(data);
 			}
-		
-		var rowBar = {type: 'dojox.GridRowView', width: '20px'};
-		
-		var leftView = {
-			noscroll: true,
-			cells: [[
-				{"field": "name", "name": "姓名"}
-		]]};
-		
-		var middleView = {cells: [[
-             {"field": "no", "name": "学号"},            
-             {"field": "gender", "name": "性别"},
-             {"field": "phone", "name": "电话"},
-             {"field": "birthday", "name": "生日", "width": "120px"},
-             {"field": "address", "name": "家庭住址"},
+			
+		var structure = [{"cells": [[
+             {"field": "no", "name": "入库编号","width": "100px"},
+             {"field": "name", "name": "货物名称"},
+             {"field": "storehouse", "name": "仓库"},            
+             {"field": "place", "name": "库位"},
+             {"field": "number", "name": "数量"},
+             //{"field": "type", "name": "型号", "width": "120px"},
+             {"field": "type", "name": "型号"},
+             {"field": "color", "name": "颜色"},
+             {"field": "material", "name": "材质"},
+             
              ]]
-			};
-		var structure = [rowBar,leftView,middleView];
-		
+			}];
+			
+			//确认入库表结构
+			var inStorehouseStructure = [{"cells": [[
+             {"field": "no", "name": "入库编号","width": "100px"},
+             {"field": "storehouse", "name": "仓库"},            
+             {"field": "place", "name": "库位"},
+             {"field": "number", "name": "数量"},
+             ]]
+			}];
+		   //入库详情表结构
+		   var inStoreDetailStructure = [{"cells": [[
+             {"field": "no", "name": "入库编号","width": "100px"},
+             {"field": "inStoreDate", "name": "入库日期"}, 
+             {"field": "adminName", "name": "入库人"},            
+             {"field": "goodsName", "name": "物品名称"},
+             {"field": "storehouse", "name": "仓库"},            
+             {"field": "place", "name": "库位"},
+             {"field": "number", "name": "数量"},
+             {"field": "type", "name": "型号"},
+             {"field": "color", "name": "颜色"},
+             {"field": "material", "name": "材质"},
+             ]]
+			}];
+			
 		dojo.addOnLoad(function(){
              studentGrid.setStructure(structure);
-             
              var mainTabContainer = dijit.byId("mainTabContainer");
+             var inStoreDetail=dijit.byId("inStoreDetail");//
+             mainTabContainer.selectChild(inStoreDetail);//
              var importTab = dijit.byId("import");
              mainTabContainer.selectChild(importTab);
              showGrid();
-
+			 inStoreDetailGrid();//
              var queryTab = dijit.byId("queryTab");
              mainTabContainer.selectChild(queryTab);
-             queryStudent();
+             //queryStudent();
           }
         );
 	</script>
-</head>
-<body class="tundra">
-<div id="mainTabContainer" dojoType="dijit.layout.TabContainer"
-	style="width: 100%; height: 100%">
-<div dojoType="dijit.layout.ContentPane" title="查看学生" id="queryTab">
-<form action="" id="queryForm" name="queryForm">&ensp; 学号: <input
-	dojoType=dijit.form.TextBox type="text" id="queryNo" name="queryNo"
-	maxlength="16" style="width: 120px;"> 姓名: <input
-	dojoType=dijit.form.TextBox type="text" id="queryName" name="queryName"
-	maxlength="16" style="width: 100px;">
-<button dojoType="dijit.form.Button" onClick=selectStudent(this)>
-查询</button>
+	</head>
+	<body class="tundra">
+		<div id="mainTabContainer" dojoType="dijit.layout.TabContainer"
+			style="width: 100%; height: 100%">
+			<div dojoType="dijit.layout.ContentPane" title="查询物品" id="queryTab">
+				<form action="" id="queryForm" name="queryForm">
+					&ensp; 入库编号:
+					<input dojoType=dijit.form.TextBox type="text" id="queryNo"
+						name="queryNo" maxlength="16" style="width: 120px;">
+					名称:
+					<input dojoType=dijit.form.TextBox type="text" id="queryName"
+						name="queryName" maxlength="16" style="width: 100px;">
+					<button dojoType="dijit.form.Button" onClick=queryGoods()>
+						查看
+					</button>
+					<div dojoType="dojox.Grid" id="studentGrid" jsId="studentGrid"
+						style="height: 90%"></div>
+				</form>
+				<br />
 
-<div dojoType="dojox.Grid" id="studentGrid" jsId="studentGrid"
-	autoWidth="false" autoHeight="false" elasticView="2"
-	style="height: 90%;"></div>
-</form>
-<br />
-
-</div>
-<div dojoType="dijit.layout.ContentPane" title="添加学生">
-<table cellspacing="10px">
-	<tr>
-		<td colspan="2" align="center" class="title" style="height: 50px;">
-		请填写学生信息</td>
-	</tr>
-	<tr>
-		<td align="right" width="30%">姓名:</td>
-		<td align="left"><input dojoType=dijit.form.TextBox type="text"
-			id="name" name="name" maxlength="16" style="width: 120px;"></td>
-	</tr>
-	<tr>
-		<td align="right">学号:</td>
-		<td align="left"><input dojoType=dijit.form.TextBox type="text"
-			id="no" name="no" maxlength="16" style="width: 120px;"></td>
-	</tr>
-	<tr>
-		<td align="right">性别:</td>
-		<td align="left"><input type="radio" name="gender" id="g1rb1"
-			value="T" dojoType="dijit.form.RadioButton" checked="checked">
-		<label for="g1rb1"> 男 </label> <input type="radio" name="gender"
-			id="g1rb2" value="F" dojoType="dijit.form.RadioButton" /> <label
-			for="g1rb2"> 女 </label></td>
-	</tr>
-	<tr>
-		<td align="right">出生年月:</td>
-		<td align="left"><input id="birthday" name="birthday" type="text"
-			dojoType="dijit.form.DateTextBox"
-			constraints="{datePattern:'dd-MM-yyyy', strict:true}"></td>
-	</tr>
-
-	<tr>
-		<td align="right">电话:</td>
-		<td align="left"><input dojoType=dijit.form.TextBox type="text"
-			id="phone" name="phone" maxlength="20" style="width: 120px;">
-		</td>
-	</tr>
-	<tr>
-		<td align="right">民族:</td>
-		<td align="left"><input dojoType=dijit.form.TextBox type="text"
-			id="nation" name="nation" maxlength="20" style="width: 120px;">
-		</td>
-	</tr>
-	<tr>
-		<td align="right">家庭住址:</td>
-		<td align="left"><input dojoType=dijit.form.TextBox type="text"
-			id="address" name="address" maxlength="50" style="width: 300px;">
-		</td>
-	</tr>
-	<tr>
-		<td align="right">
-		<button dojoType="dijit.form.Button" onClick=addStudent>确定</button>
-		</td>
-		<td align="left">
-		<button dojoType="dijit.form.Button" onClick=reset>取消</button>
-		</td>
-	</tr>
-</table>
-</div>
-<div dojoType="dijit.layout.ContentPane" title="导入学生" id="import">
-<input dojoType="dijit.form.TextBox" name="filename" type="file"
-	id="file">
-<button dojoType="dijit.form.Button" onClick=read(this)>读取</button>
-<button dojoType="dijit.form.Button" onClick=upload(this)
-	id="uploadButton">上传</button>
-<div dojoType="dojox.Grid" id="uploadGrid" jsId="uploadGrid"
-	autoWidth="false" autoHeight="false" elasticView="2"
-	style="height: 90%"></div>
-<script type="text/javascript">
+			</div>
+			
+			<div dojoType="dijit.layout.ContentPane" title="物品入库" id="import">
+				货号：
+				<input dojoType="dijit.form.TextBox" name="filename" type="text"
+					id="goodsNo" style="width: 120px;">
+				<button dojoType="dijit.form.Button" onClick=inStorehouse()>
+					确认入库
+				</button>
+				<div dojoType="dojox.Grid" id="uploadGrid" jsId="uploadGrid"
+					style="height: 90%"></div>
+				</div>
+				
+				<div dojoType="dijit.layout.ContentPane" title="入库详情" id="inStoreDetail">
+				入库编号：
+				<input dojoType="dijit.form.TextBox" name="goodsNoDetail" type="text"
+					id="goodsNoDetail" style="width: 120px;">
+				入库人姓名：
+				<input dojoType="dijit.form.TextBox" name="adminName" type="text"
+					id="adminName" >	
+				<button dojoType="dijit.form.Button" onClick=inStorehouse()>
+					查看
+				</button>
+				<div dojoType="dojox.Grid" id="inStoreDetailGrid" jsId="inStoreDetailGrid"
+					style="height: 90%"></div>
+				</div>	
+				<script type="text/javascript">
 					function showGrid(){
 					    var uploadGrid = dijit.byId("uploadGrid");
-						uploadGrid.setStructure(structure);
+						uploadGrid.setStructure(inStorehouseStructure);
 						uploadGrid.refresh();
 					}
 					
-					var studentInfo = "[{";
+					function inStoreDetailGrid(){//
+						var inStoreDetailGrid=dijit.byId("inStoreDetailGrid");
+						inStoreDetailGrid.setStructure(inStoreDetailStructure);
+						inStoreDetailGrid.refresh();
+					}
+					
+					/*var studentInfo = "[{";
 					function read(){
 						console.log("reading file...");
 						var oXL=new ActiveXObject("Excel.application");
@@ -251,8 +238,9 @@
 						},
 			           	error: callError
 			        	});
-					}
+					}*/
 					
-				</script></div>
-</body>
+				</script>
+			</div>
+	</body>
 </html>
