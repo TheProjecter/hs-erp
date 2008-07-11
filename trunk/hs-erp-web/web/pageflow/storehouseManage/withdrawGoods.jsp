@@ -1,27 +1,8 @@
+<%@ page language="java" pageEncoding="UTF-8"%>
+<%@include file="../inc/head.jsp"%>
 <html>
-	<head>
-		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<head> 
 		<title>入库退货</title>
-
-		<style type="text/css">
-@import "../../js/dojo1.1.1/dojo/resources/dojo.css";
-
-@import "../../js/dojo1.1.1/dijit/themes/dijit.css";
-
-@import "../../js/dojo1.1.1/dijit/themes/tundra/tundra.css";
-
-@import "../../css/sms.css";
-
-@import "../../js/dojo1.1.1/dojox/grid/_grid/tundraGrid.css";
-</style>
-
-		<script type="text/javascript">
-		    var djConfig = {
-			isDebug:true, parseOnLoad:true, usePlainJson:true 
-		    };
-		</script>
-		<script type="text/javascript" src="../../js/dojo1.1.1/dojo/dojo.js"></script>
-
 		<script type="text/javascript"> 
 		dojo.require("dijit.layout.ContentPane");
 		dojo.require("dojo.parser");	
