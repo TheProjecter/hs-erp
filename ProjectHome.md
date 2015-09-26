@@ -1,0 +1,1 @@
+this project aim at establishing a resource management system for medium and small enterprises. It consists of storage, financial, human resource, business subsystem etc.
